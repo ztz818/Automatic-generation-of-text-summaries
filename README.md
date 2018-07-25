@@ -34,3 +34,14 @@ Bahdanau等人在14年发表的论文《Neural Machine Translation by JointlyLea
 ![.](https://github.com/ztz818/Automatic-generation-of-text-summaries/blob/master/pictures/3.jpg)
 
 本项目使用基于Tensorflow的seq2seq+attention框架搭建摘要生成网络，具体代码在代码文件中。
+
+实验结果分析：
+![.](https://github.com/ztz818/Automatic-generation-of-text-summaries/blob/master/pictures/8.png)
+使用的训练语料是搜狐新闻数据集，包含了40万个新闻-标题对儿；测试数据使用两种，一种是从源数据集里随机选了2000个出来（没有用在训练），另一种是评测数据，包含500个。模型的调参是在验证集上用Rouge（即召回率）这个指标，用Rouge1和Rouge2两个指标对比了三种模型（传统Textrank,抽取式模型，生成式模型），结果表明后两种模型表现更好，Rouge值有显著提高。
+
+
+生成式模型受训练语料与训练时间的影响较大，相比抽取式模型有不稳定性，但生成式模型产生的结果更简洁，具有总结归纳的能力，是抽取式模型不具备的。
+
+项目网址:https://textsummary.herokuapp.com
+
+训练数据庞大，学校网速有限，不再上传。有需要联系513617866@qq.com 欢迎指正
