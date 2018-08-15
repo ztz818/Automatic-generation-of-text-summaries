@@ -12,7 +12,7 @@ TextRank算法是根据google的pagerank算法改造得来的，google用pageran
 
 图中每个球都代表了一张网页，每一个箭头代表该网页上有其它网页的超链接，如D球，它有指向A的箭头，代表D网页上有A的连接，而E指向了D表示E网页上有D的连接。被引用的越多代表该网页的重要性越大。表格如下<br>
 
-![.](https://github.com/ztz818/Automatic-generation-of-text-summaries/blob/master/pictures/13.png)
+![.](https://github.com/ztz818/Automatic-generation-of-text-summaries/blob/master/pictures/13.jpg)
 
 通过这张图可以计算每张网页被其它网页引用的次数，从而算出这张网页的重要程度，计算公式如下：
 
@@ -29,7 +29,7 @@ TextRank算法是根据google的pagerank算法改造得来的，google用pageran
 
 通过相似度矩阵，我们就可以通过以下公式来计算句子的重要程度：
 
-![.](https://github.com/ztz818/Automatic-generation-of-text-summaries/blob/master/pictures/7.jpg)
+![.](https://github.com/ztz818/Automatic-generation-of-text-summaries/blob/master/pictures/7.png)
 
 我们注意到这种传统的句子相似性在某种程度上使句子之间建立起了联系，但是单词的词性，单词的近义词，反义词等诸多因素都未考虑进去，因此这种计算句子之间相似性的方法并不优秀。
 
@@ -87,11 +87,15 @@ Attention层的核心在于对Encoder端隐层的权重计算。如下图所示�
 
 我们对图中的符号先进行定义：<br>
 
-s_prev代表Decoder端前一轮的隐层状态，即代表了翻译“love”阶段的输出隐层状态；<br>
-蓝色框图中的a1-a4分别代表了Encoder端每个输入词BiRNN隐层状态。例如，a1代表了“我”这个词经过Bi-LSTM后的输出向量；<br>
-红色α1-α4分别代表了Attention机制学习到的权重。例如α3代表了“机器”这个词的权重，可以看到α3对应的线条比较粗，意味着在翻译生成“machine”这个词时对应的Context Vector会给予“机器”这个词更多的Attention；<br>
-绿色的圈圈代表加权后的Context Vector。<br>
-Attention中权重α是关于a和s_prev的函数，我们首先将Bi-LSTM的隐层状态a和s_prev进行concat；然后利用全连接层并采用Softmax激活函数训练一个小的神经网络，得到输出α。进而再利用得到的权重α对Bi-LSTM的隐层状态a进行加权求和，得到当前翻译“machine”的Context Vector，最后将这个Context Vector输入给Decoder进行处理。对翻译的每个词我们都可以采用同样的方式进行构造。<br>
+1.s_prev代表Decoder端前一轮的隐层状态，即代表了翻译“love”阶段的输出隐层状态；<br>
+
+2.蓝色框图中的a1-a4分别代表了Encoder端每个输入词BiRNN隐层状态。例如，a1代表了“我”这个词经过Bi-LSTM后的输出向量；<br>
+
+3.红色α1-α4分别代表了Attention机制学习到的权重。例如α3代表了“机器”这个词的权重，可以看到α3对应的线条比较粗，意味着在翻译生成“machine”这个词时对应的Context Vector会给予“机器”这个词更多的Attention；<br>
+
+4.绿色的圈圈代表加权后的Context Vector。Attention中权重α是关于a和s_prev的函数，我们首先将Bi-LSTM的隐层状态a和s_prev进行concat；然后利用全连接层并采用Softmax激活函数训练一个小的神经网络，得到输出α。进而再利用得到的权重α对Bi-LSTM的隐层状态a进行加权求和，得到当前翻译“machine”的Context Vector<br>
+
+最后将这个Context Vector输入给Decoder进行处理。对翻译的每个词我们都可以采用同样的方式进行构造。<br>
 
 其他细节不再赘述，代码包含在源文件中。<br>
 
