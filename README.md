@@ -81,7 +81,7 @@ BiRNN正如其名字所说——双向RNN，意思是我们不仅考虑句子的
 具体的理论内容不再赘述，下面简单介绍下本项目使用的attention机制：<br>
 
 Attention层的核心在于对Encoder端隐层的权重计算。如下图所示：
-![.](https://github.com/ztz818/Automatic-generation-of-text-summaries/blob/master/pictures/16.jpg)
+![.](https://github.com/ztz818/Automatic-generation-of-text-summaries/blob/master/pictures/18.jpg)
 
 以“我爱机器学习”为例，假如我们当前时刻准备生成“machine”这个词，此时我们需要计算Context Vector。<br>
 
