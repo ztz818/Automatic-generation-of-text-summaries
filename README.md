@@ -8,7 +8,7 @@
 抽取式顾名思义，就是按照一定的权重，从原文中寻找跟中心思想最接近的一条或几条句子。而生成式则是计算机通读原文后，在理解整篇文章意思的基础上，按自己的话生成流畅的翻译。
 
 TextRank算法是根据google的pagerank算法改造得来的，google用pagerank算法来计算网页的重要性。textrank在pagerank的原理上用来计算一个句子在整个文章里面的重要性，下面通过一个例子来说明一下:
-![.](https://github.com/ztz818/Automatic-generation-of-text-summaries/blob/master/pictures/6.png)
+![.](https://github.com/ztz818/Automatic-generation-of-text-summaries/blob/master/pictures/19.png)
 
 图中每个球都代表了一张网页，每一个箭头代表该网页上有其它网页的超链接，如D球，它有指向A的箭头，代表D网页上有A的连接，而E指向了D表示E网页上有D的连接。被引用的越多代表该网页的重要性越大。表格如下<br>
 
